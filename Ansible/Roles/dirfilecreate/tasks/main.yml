@@ -1,0 +1,29 @@
+---
+- name: Create a directory
+  become: yes
+  become_method: sudo
+  ansible.builtin.file:
+    path: /etc/test_dir_01
+    state: directory
+    mode: '0777'
+
+- name: Creating a file
+  become: yes
+  become_method: sudo
+  ansible.builtin.file:
+    path: /etc/test_dir_01/test.txt
+    state: touch
+    mode: '0777'
+
+- name: Changing a file   
+  lineinfile:
+      path: /etc/test_dir_01/test.txt
+      line: "{{ ansible_date_time.date }}"
+
+- name: Download README.rst
+  become: yes
+  become_method: sudo
+  ansible.builtin.get_url:
+    url: https://github.com/ansible/ansible/blob/devel/README.rst
+    dest: /etc/test_dir_01/
+    mode: '0777'
