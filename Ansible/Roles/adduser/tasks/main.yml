@@ -1,0 +1,11 @@
+---
+- name: Add a user
+  become: yes
+  become_method: sudo
+  vars:
+    password: somepassword
+  ansible.builtin.user:
+    name: tstusr
+    update_password: always
+    password: "{{ password | password_hash('sha512') }}"
+    comment: Test User

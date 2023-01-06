@@ -1,0 +1,5 @@
+---
+- hosts: virtualmachines
+  roles:
+    - adduser
+    - dirfilecreate
