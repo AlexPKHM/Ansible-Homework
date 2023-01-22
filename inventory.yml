@@ -1,0 +1,7 @@
+---
+virtualmachines:
+  hosts:
+    gb-vm-01:
+      ansible_host: 95.163.215.117
+      ansible_user: ubuntu
+      ansible_ssh_private_key_file: /Users/alexandrpkhm/Documents/development/ssh/gb-vm-01-YltYUHtn.pem 
