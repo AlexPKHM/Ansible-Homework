@@ -1,0 +1,19 @@
+---
+- hosts: virtualmachines
+
+  vars_files:
+    - vars/wordpress.yml
+  roles:
+    - wordpress
+  collections:
+    - nginxinc.nginx_core
+    - community.mysql
+  tasks:
+    - name: Install NGINX
+      ansible.builtin.include_role:
+        name: nginx
+    - name: Create a new database with name 'bobdata'
+      community.mysql.mysql_db:
+        name: bobdata
+        state: present
+        login_unix_socket: /run/mysqld/mysqld.sock
